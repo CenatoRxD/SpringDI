@@ -10,6 +10,9 @@ public class Human {
 
     private IPosition position;
 
+    public Human() {
+    }
+
     //Must have to constructor injection
     public Human(IFortuneService fortuneService) {
         this.fortuneService = fortuneService;
