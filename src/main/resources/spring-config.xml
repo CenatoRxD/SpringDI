@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--CONSTRUCTOR DI-->
+    <!--Must have for constructor injection-->
+    <bean id="fortune" class="pl.spring.di.impl.HappyFortuneServiceImpl"/>
+
+    <!--SETTER DI-->
+    <!--Must have for setter injection-->
+    <bean id="position" class="pl.spring.di.impl.ManagerImpl"/>
+
+    <bean id="human" class="pl.spring.di.classes.Human">
+        <!--for constructor injection-->
+        <constructor-arg ref="fortune"/>
+        <!--for setter injection-->
+        <property name="position" ref="position"/>
+    </bean>
+
+    <!--search classes whith annotation "@Component"-->
+    <context:component-scan base-package="pl.spring.di"/>
 </beans>
